@@ -18,15 +18,15 @@ LEFT_KEY = "'a'"
 RIGHT_KEY = "'d'"
 AI_PLAY_KEY = "'1'"
 
-# Fonts and colors
+# Fonts and colours
 LABEL_FONT = ("Verdana", 40, "bold")
 SCORE_FONT = ("Verdana", 20, "bold")
 
-GAME_COLOR = "#bbada0"
-EMPTY_COLOR = "#cdc1b4"
+GAME_COLOUR = "#bbada0"
+EMPTY_COLOUR = "#cdc1b4"
 
-# Background colors for tiles
-TILE_COLORS = {
+# Background colours for tiles
+TILE_COLOURS = {
     2: "#eee4da",
     4: "#ede0c8",
     8: "#f2b179",
@@ -38,13 +38,13 @@ TILE_COLORS = {
     512: "#edc850",
     1024: "#edc53f",
     2048: "#edc22e",
-    4096: "#3c3a32",  # Default darker color for subsequent tiles
+    4096: "#3c3a32",  # Default darker colour for subsequent tiles
     8192: "#3c3a32",
     16384: "#3c3a32",
 }
 
-# Text colors for tiles
-LABEL_COLORS = {
+# Text colours for tiles
+LABEL_COLOURS = {
     2: "#776e65",
     4: "#776e65",
     8: "#f9f6f2",
@@ -56,7 +56,7 @@ LABEL_COLORS = {
     512: "#f9f6f2",
     1024: "#f9f6f2",
     2048: "#f9f6f2",
-    4096: "#f9f6f2",  # Consistent text color for subsequent tiles
+    4096: "#f9f6f2",  # Consistent text colour for subsequent tiles
     8192: "#f9f6f2",
     16384: "#f9f6f2",
 }
@@ -96,20 +96,20 @@ class Display(Frame):
         Creates the game layout, including the grid, score labels, and control buttons.
         """
         # Create the main frame
-        background = Frame(self, bg=GAME_COLOR, width=EDGE_LENGTH, height=100)
+        background = Frame(self, bg=GAME_COLOUR, width=EDGE_LENGTH, height=100)
         background.grid()
 
         # Create the highest score display
         self.highest_score_label = Label(
             self, text=f"Highest: {self.highest_score}",
-            font=SCORE_FONT, bg=GAME_COLOR, fg="black"
+            font=SCORE_FONT, bg=GAME_COLOUR, fg="black"
         )
         self.highest_score_label.place(x=EDGE_LENGTH - 160, y=10)
 
         # Create the score display
         self.score_label = Label(
             self, text=f"Score: {self.score}",
-            font=SCORE_FONT, bg=GAME_COLOR, fg="black"
+            font=SCORE_FONT, bg=GAME_COLOUR, fg="black"
         )
         self.score_label.place(x=EDGE_LENGTH - 160, y=50)
 
@@ -121,7 +121,7 @@ class Display(Frame):
         self.reset_button.place(x=EDGE_LENGTH + 230, y=40)
 
         # Create the game grid
-        grid_frame = Frame(self, bg=GAME_COLOR, width=EDGE_LENGTH, height=EDGE_LENGTH)
+        grid_frame = Frame(self, bg=GAME_COLOUR, width=EDGE_LENGTH, height=EDGE_LENGTH)
         grid_frame.grid(row=1, column=0)
 
         # Add tiles to the grid
@@ -129,13 +129,13 @@ class Display(Frame):
             grid_row = []
             for col in range(CELL_COUNT):
                 cell = Frame(
-                    grid_frame, bg=EMPTY_COLOR,
+                    grid_frame, bg=EMPTY_COLOUR,
                     width=EDGE_LENGTH / CELL_COUNT,
                     height=EDGE_LENGTH / CELL_COUNT
                 )
                 cell.grid(row=row, column=col, padx=CELL_PAD, pady=CELL_PAD)
                 tile = Label(
-                    master=cell, text="", bg=EMPTY_COLOR,
+                    master=cell, text="", bg=EMPTY_COLOUR,
                     justify=CENTER, font=LABEL_FONT, width=5, height=2
                 )
                 tile.grid()
@@ -156,12 +156,12 @@ class Display(Frame):
             for col in range(CELL_COUNT):
                 tile_value = self.matrix[row][col]
                 if not tile_value:
-                    self.grid_cells[row][col].configure(text="", bg=EMPTY_COLOR)
+                    self.grid_cells[row][col].configure(text="", bg=EMPTY_COLOUR)
                 else:
                     self.grid_cells[row][col].configure(
                         text=str(tile_value),
-                        bg=TILE_COLORS.get(tile_value, TILE_COLORS[4096]),
-                        fg=LABEL_COLORS.get(tile_value, LABEL_COLORS[4096])
+                        bg=TILE_COLOURS.get(tile_value, TILE_COLOURS[4096]),
+                        fg=LABEL_COLOURS.get(tile_value, LABEL_COLOURS[4096])
                     )
         self.update_idletasks()
 
